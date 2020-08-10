@@ -87,9 +87,12 @@ public class MainActivity extends AppCompatActivity {
     protected void showMusicList () {
         final ListView lv = (ListView) findViewById(R.id.musicList);
         File musicDir = new File(Environment.getExternalStorageDirectory().getPath()+ "/Music/");
-        File list[] = musicDir.listFiles();
+        File[] list = musicDir.listFiles();
 
-        lv.setAdapter(new ArrayAdapter<File>(this, android.R.layout.simple_list_item_1, list));
+
+        if (list != null) {
+            lv.setAdapter(new ArrayAdapter<File>(this, android.R.layout.simple_list_item_1, list));
+        }
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
